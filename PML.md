@@ -47,6 +47,7 @@ library(rattle)
 library(rpart)
 library(e1071)
 library(rFerns)
+set.seed(125)
 df <- read.csv("pml-training.csv", stringsAsFactors = TRUE)
 dft <- read.csv("pml-testing.csv", stringsAsFactors = TRUE)
 ```
@@ -134,7 +135,7 @@ s3 <- confusionMatrix(sanity3, training$classe)
 s4 <- confusionMatrix(sanity4, training$classe)
 ```
 
-Rpart significantly under performed with an accuracy of only 0.4867 on the test set,  rpart2, rFerns resulted in good accuracy with similar results in both sets (rpart2 0.6584 and `c2$overall[1]`in the training and testing sets correspondingly  and  rFerns 0.927 and `c3$overall[1]`in the training and testing sets correspondingly),  C5.0 results were superior to all the other algorithms with accuracy of  `c3$overall[1]` in the testing set
+Rpart significantly under performed with an accuracy of only 0.5589 on the test set,  rpart2, rFerns resulted in good accuracy with similar results in both sets (rpart2 0.7478 and 0.7465in the training and testing sets correspondingly  and  rFerns 0.9319 and 0.9029in the training and testing sets correspondingly),  C5.0 results were superior to all the other algorithms with accuracy of  0.9029 in the testing set
 
 
 
@@ -166,32 +167,32 @@ Given the excellent results of C5.0 (see confusion matrix)
 ##           Reference
 ## Prediction    A    B    C    D    E
 ##          A 1395    0    0    0    0
-##          B    0  948    2    0    0
-##          C    0    0  853    1    0
-##          D    0    1    0  801    0
-##          E    0    0    0    2  901
+##          B    0  948    0    0    0
+##          C    0    1  855    0    0
+##          D    0    0    0  804    1
+##          E    0    0    0    0  900
 ## 
 ## Overall Statistics
 ##                                     
-##                Accuracy : 0.999     
-##                  95% CI : (0.997, 1)
+##                Accuracy : 1         
+##                  95% CI : (0.999, 1)
 ##     No Information Rate : 0.284     
 ##     P-Value [Acc > NIR] : <2e-16    
 ##                                     
-##                   Kappa : 0.998     
+##                   Kappa : 0.999     
 ##  Mcnemar's Test P-Value : NA        
 ## 
 ## Statistics by Class:
 ## 
 ##                      Class: A Class: B Class: C Class: D Class: E
-## Sensitivity             1.000    0.999    0.998    0.996    1.000
-## Specificity             1.000    0.999    1.000    1.000    1.000
-## Pos Pred Value          1.000    0.998    0.999    0.999    0.998
-## Neg Pred Value          1.000    1.000    1.000    0.999    1.000
+## Sensitivity             1.000    0.999    1.000    1.000    0.999
+## Specificity             1.000    1.000    1.000    1.000    1.000
+## Pos Pred Value          1.000    1.000    0.999    0.999    1.000
+## Neg Pred Value          1.000    1.000    1.000    1.000    1.000
 ## Prevalence              0.284    0.194    0.174    0.164    0.184
-## Detection Rate          0.284    0.193    0.174    0.163    0.184
-## Detection Prevalence    0.284    0.194    0.174    0.164    0.184
-## Balanced Accuracy       1.000    0.999    0.999    0.998    1.000
+## Detection Rate          0.284    0.193    0.174    0.164    0.184
+## Detection Prevalence    0.284    0.193    0.175    0.164    0.184
+## Balanced Accuracy       1.000    0.999    1.000    1.000    0.999
 ```
 
 we did not investigate further models, or  different set of attributes, or different parameters. C5.0 provided an excellent predictor. 
