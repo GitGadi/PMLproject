@@ -34,7 +34,7 @@ library(rattle)
 library(rpart)
 library(e1071)
 library(rFerns)
-set.seed(125)
+set.seed(34555)
 df <- read.csv("pml-training.csv", stringsAsFactors = TRUE)
 dft <- read.csv("pml-testing.csv", stringsAsFactors = TRUE)
 
@@ -102,7 +102,7 @@ s3 <- confusionMatrix(sanity3, training$classe)
 s4 <- confusionMatrix(sanity4, training$classe)
 ```
 
-Rpart significantly under performed with an accuracy of only `r c1$overall[1]` on the test set,  rpart2, rFerns resulted in good accuracy with similar results in both sets (rpart2 `r s2$overall[1]` and `r c2$overall[1]`in the training and testing sets correspondingly  and  rFerns `r s3$overall[1]` and `r c3$overall[1]`in the training and testing sets correspondingly),  C5.0 results were superior to all the other algorithms with accuracy of  `r c3$overall[1]` in the testing set
+Rpart significantly under performed with an accuracy of only `r c1$overall[1]` on the test set,  rpart2, rFerns resulted in better accuracy with similar results in both sets (rpart2 `r s2$overall[1]` and `r c2$overall[1]`in the training and testing sets correspondingly  and  rFerns `r s3$overall[1]` and `r c3$overall[1]`in the training and testing sets correspondingly),  C5.0 results were superior to all the other algorithms with accuracy of  `r c4$overall[1]` in the testing set
 
 
 
