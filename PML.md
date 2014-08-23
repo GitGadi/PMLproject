@@ -94,10 +94,20 @@ We used the training  set to train four models based on  rpart, rpart2, rFerns, 
 ```r
 modFit1 <- train(classe~.,method = 'rpart',data=training)
 modFit2 <- train(classe~.,method = 'rpart2',data=training)
-modFit3 <- modFit2
-#modFit3 <- train(classe~.,method = 'rFerns',data=training)
-modFit4 <- modFit3
-#modFit4 <- train(classe~.,method = 'C5.0',data=training)
+modFit3 <- train(classe~.,method = 'rFerns',data=training)
+modFit4 <- train(classe~.,method = 'C5.0',data=training)
+```
+
+```
+## Loading required package: C50
+```
+
+```
+## Warning: package 'C50' was built under R version 3.1.1
+```
+
+```
+## Loading required package: plyr
 ```
 
 ##### comparing the models and cross-validation
@@ -124,7 +134,7 @@ s3 <- confusionMatrix(sanity3, training$classe)
 s4 <- confusionMatrix(sanity4, training$classe)
 ```
 
-Rpart significantly under performed with an accuracy of only 0.6221 on the test set,  rpart2, rFerns resulted in good accuracy with similar results in both sets (rpart2 0.7483 and `c2$overall[1]`in the training and testing sets correspondingly  and  rFerns 0.7483 and `c3$overall[1]`in the training and testing sets correspondingly),  C5.0 results were superior to all the other algorithms with accuracy of  `c3$overall[1]` in the testing set
+Rpart significantly under performed with an accuracy of only 0.4867 on the test set,  rpart2, rFerns resulted in good accuracy with similar results in both sets (rpart2 0.6584 and `c2$overall[1]`in the training and testing sets correspondingly  and  rFerns 0.927 and `c3$overall[1]`in the training and testing sets correspondingly),  C5.0 results were superior to all the other algorithms with accuracy of  `c3$overall[1]` in the testing set
 
 
 
@@ -155,33 +165,33 @@ Given the excellent results of C5.0 (see confusion matrix)
 ## 
 ##           Reference
 ## Prediction    A    B    C    D    E
-##          A 1347  316   82  231   24
-##          B   19  487   22    0   33
-##          C   25  140  750  232   29
-##          D    0    6    1  308    5
-##          E    4    0    0   33  810
+##          A 1395    0    0    0    0
+##          B    0  948    2    0    0
+##          C    0    0  853    1    0
+##          D    0    1    0  801    0
+##          E    0    0    0    2  901
 ## 
 ## Overall Statistics
-##                                         
-##                Accuracy : 0.755         
-##                  95% CI : (0.743, 0.767)
-##     No Information Rate : 0.284         
-##     P-Value [Acc > NIR] : <2e-16        
-##                                         
-##                   Kappa : 0.685         
-##  Mcnemar's Test P-Value : <2e-16        
+##                                     
+##                Accuracy : 0.999     
+##                  95% CI : (0.997, 1)
+##     No Information Rate : 0.284     
+##     P-Value [Acc > NIR] : <2e-16    
+##                                     
+##                   Kappa : 0.998     
+##  Mcnemar's Test P-Value : NA        
 ## 
 ## Statistics by Class:
 ## 
 ##                      Class: A Class: B Class: C Class: D Class: E
-## Sensitivity             0.966   0.5132    0.877   0.3831    0.899
-## Specificity             0.814   0.9813    0.895   0.9971    0.991
-## Pos Pred Value          0.673   0.8681    0.638   0.9625    0.956
-## Neg Pred Value          0.983   0.8936    0.972   0.8918    0.978
-## Prevalence              0.284   0.1935    0.174   0.1639    0.184
-## Detection Rate          0.275   0.0993    0.153   0.0628    0.165
-## Detection Prevalence    0.408   0.1144    0.240   0.0653    0.173
-## Balanced Accuracy       0.890   0.7472    0.886   0.6901    0.945
+## Sensitivity             1.000    0.999    0.998    0.996    1.000
+## Specificity             1.000    0.999    1.000    1.000    1.000
+## Pos Pred Value          1.000    0.998    0.999    0.999    0.998
+## Neg Pred Value          1.000    1.000    1.000    0.999    1.000
+## Prevalence              0.284    0.194    0.174    0.164    0.184
+## Detection Rate          0.284    0.193    0.174    0.163    0.184
+## Detection Prevalence    0.284    0.194    0.174    0.164    0.184
+## Balanced Accuracy       1.000    0.999    0.999    0.998    1.000
 ```
 
 we did not investigate further models, or  different set of attributes, or different parameters. C5.0 provided an excellent predictor. 
@@ -206,7 +216,7 @@ Further applying the model to  20 test cases available in dft (<https://d396qusz
 
 
 ```
-##  [1] C A C A A E D A A A C C B A E E A A A B
+##  [1] B A B A A E D B A A B C B A E E A B B B
 ## Levels: A B C D E
 ```
 

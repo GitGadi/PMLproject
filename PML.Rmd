@@ -74,10 +74,8 @@ We used the training  set to train four models based on  rpart, rpart2, rFerns, 
 ```{r cache=FALSE}
 modFit1 <- train(classe~.,method = 'rpart',data=training)
 modFit2 <- train(classe~.,method = 'rpart2',data=training)
-modFit3 <- modFit2
-#modFit3 <- train(classe~.,method = 'rFerns',data=training)
-modFit4 <- modFit3
-#modFit4 <- train(classe~.,method = 'C5.0',data=training)
+modFit3 <- train(classe~.,method = 'rFerns',data=training)
+modFit4 <- train(classe~.,method = 'C5.0',data=training)
 ```
 
 ##### comparing the models and cross-validation
